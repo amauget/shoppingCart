@@ -1,5 +1,4 @@
 export default function CartCount({count}){
-    console.log(count)
     let output = count
     if(count === 0){
         output = ''

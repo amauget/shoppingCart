@@ -1,31 +1,18 @@
 import App from "./App";
-
+import ProductPage from "./components/ProductPage";
+import Cart from "./components/Cart/Cart";
 // import ErrorPage from "./assets/ErrorPage";
-
-
-
-const routes = [
-    {
-        path: "/",
-        element: <App />, //home
-        // errorElement: <ErrorPage />
-    },
+const routes =[
         {
-        path: "profile",
-        // element: <Profile />,
-        children: [
-        // {index: true, element: <DefaultProfile />},
-        { /* path: "spinach", element: <Spinach /> */ },
-        { /* path: "popeye", element: <Popeye />  */},
-        ], 
-        
-    },
-        // the other option is to use dynamic segments which are indicated with a colon ":"
-/*     {
-        path: "profile/:name", //For name params, see Profile.jsx
-        element: <Profile />,
-    }, */
-    
-]
+            path: "/",
+            element: <App />, //Viewing List of products
+            children: [
+                {path: '/components/Cart/Cart.jsx', element: <Cart />},
+                {path: '/components/ProductPage.jsx', element: <ProductPage />}
+            ]
+            // errorElement: <ErrorPage />
+        },
+    ]
+
 
 export default routes

@@ -5,6 +5,7 @@ import useFetchProductRequest from './Data/fetchProducts'
 import filterData from './Data/filterData'
 import ProductPage from './components/ProductPage'
 import CartCount from './components/CartCount';
+import Cart from './components/Cart/Cart'
 
 const App = () => {
   const [category, updateCategory] = useState('products')
@@ -14,7 +15,7 @@ const App = () => {
   const [productData, updateProductData] = useState(filterData(category, products))
 
   const [cart, updateCart] = useState([])
-
+  //cart component to be child of App, overlaying current product page in popup format
   useEffect(() =>{
     updateProductData(filterData(category, products)) //renders after products returns defined
   },[products])
@@ -34,6 +35,7 @@ const App = () => {
     updateCart([...cart, item])
     console.log(cart)
   }
+
   return (
     <>
       <div className="header">
@@ -43,13 +45,13 @@ const App = () => {
           <h2 className='men' id="men's clothing" onClick={handleClickCategory}>Men's Clothing</h2>
           <h2 className='women' id="women's clothing" onClick={handleClickCategory}>Women's Clothing</h2>
           <div className='cartIconContainer'>
-            <h2 className='cart' id='cart'>🛒</h2>
+          <Link className='cart' id='cart' to='/Cart'>🛒</Link>
             <CartCount 
               count = {cart.length}
             />
           </div>
       </div>
-
+    {/* implement routing here to partition cart and products. Research means of passing states  */}
       <ProductPage
         title = {currentTitle} 
         products = {productData}
@@ -58,6 +60,10 @@ const App = () => {
         handleAddToCart={handleAddToCart}
 
       />
+      {/* <Cart  
+        title = 'Your Shopping Cart'
+        data = {cart}
+      /> */}
 
     
     </>
