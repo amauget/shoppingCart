@@ -33,7 +33,7 @@ const App =  () => {
       <div className="header">
           <h1 className='siteName' id='products' onClick={handleClickCategory}>Sure Shop</h1>
           <h2 className='electronics' id='electronics' onClick={handleClickCategory}>Electronics</h2>
-          <h2 className='jewlery' id='jewelery' onClick={handleClickCategory}>Jewelry</h2>
+          <h2 className='jewelry' id='jewelery' onClick={handleClickCategory}>Jewelry</h2>
           <h2 className='men' id="men's clothing" onClick={handleClickCategory}>Men's Clothing</h2>
           <h2 className='women' id="women's clothing" onClick={handleClickCategory}>Women's Clothing</h2>
           <h2 className='cart' id='cart'>🛒</h2>

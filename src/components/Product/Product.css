@@ -1,18 +1,45 @@
 .productContainer{
-    background-color: rgb(223, 220, 220);
-    width: fit-content;
-    padding: 10px;
+    background-color: rgb(223, 223, 223);
+    width: min-content;
+    min-width: 12vw;
+    padding: 15px;
+
+    display: grid;
+    grid-template-rows: repeat(5,auto);
+    justify-content: center;
 }
 .productImg{
-    width: 18vw;
+    grid-row: 1/2;
+    justify-self: center;
+
+    width: auto;
+    max-width: 15vw;
+
     height: auto;
+    max-height: 17vh;
+    
     border-radius: 15px;
 }
-.description{
+.title{
+    grid-row: 2/3;
     font-size: 1rem;
 }
-.star{
-    font-size: 2rem;
-    color: rgb(150, 128, 2);
+.title:hover{
+    cursor: pointer;
+    color: rgb(138, 90, 2)
+}
+.rating{
+    grid-row: 3/4;
+}
+.price{
+    grid-row: 4/5;
+}
+.addToCart{
+    grid-row: 5/6;
+    font-size: 1.2rem;
+    background: rgb(165, 1, 1);
+    color: white;
+    border: none;
+    border-radius: 7px;
 }
 

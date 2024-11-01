@@ -5,16 +5,8 @@ export default function Product({ image, title, rating, price, handleAddToCart, 
         <div className="productContainer" id={key}>  
             <img className="productImg" src={image}  />
             <h2 className="title">{title}</h2>
-            <h3 className="rating">{rating}</h3>
-            {/* <div className="starContainer">
-                <span className="star">*</span>
-                <span className="star">*</span>
-                <span className="star">*</span>
-                <span className="star">*</span>
-                <span className="star">*</span>
-            </div> */}
- 
-            <h3 className="price">{price}</h3>
+            <h3 className="rating">{rating} Stars</h3>
+            <h3 className="price">${price}</h3>
             <button /* onClick={handleAddToCart}  */className="addToCart">Add To Cart</button>
         </div>
     )

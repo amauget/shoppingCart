@@ -19,9 +19,30 @@
   font-family: cursive;
 
 }
+.siteName:hover,.electronics:hover, .jewelry:hover, .men:hover, .women:hover{
+  cursor: pointer;
+  color:  rgb(138, 90, 2)
+
+}
 .cart{
   font-size: 3rem;
   padding:0;
   margin-top: 0;
 }
+.productPage{
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}
+.title{
+  grid-row: 1/2;
+}
+.productsContainer{
+  grid-row: 2/3;
+
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(2, auto);
+  gap: 15px;
+}
+
 
