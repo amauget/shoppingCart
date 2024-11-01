@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 
-const useFetchProductRequest = (category) => {
+const useFetchProductRequest = () => {
     const [products, updateProducts] = useState([]) // Initialize as an empty array
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -8,15 +8,14 @@ const useFetchProductRequest = (category) => {
     useEffect(() => {
         const FetchProductData = async () => {
             try {
-                let url = undefined
-                category === 'products' ? url = 'https://fakestoreapi.com/products' : url = `https://fakestoreapi.com/products/category/${category}`
                 
-                const response = await fetch(url)
+                const response = await fetch('https://fakestoreapi.com/products')
+                
                 
                 if (!response.ok) {
                     throw new Error(`HTTP Error: Status ${response.status}`)
                 }
-
+    
                 let postProducts = await response.json()
                 updateProducts(postProducts)
                 setError(null)
@@ -29,7 +28,8 @@ const useFetchProductRequest = (category) => {
             }
         }
         FetchProductData()
-    }, [category])
+    }, [])
+
 
     return { products, loading, error }
 }

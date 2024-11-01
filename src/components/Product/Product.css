@@ -1,7 +1,6 @@
 .productContainer{
-    background-color: rgb(223, 223, 223);
-    width: min-content;
-    min-width: 12vw;
+    background-color: rgb(255, 255, 255);
+    width: 20vw;
     padding: 15px;
 
     display: grid;
@@ -10,6 +9,7 @@
 }
 .productImg{
     grid-row: 1/2;
+    
     justify-self: center;
 
     width: auto;
@@ -22,7 +22,7 @@
 }
 .title{
     grid-row: 2/3;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 .title:hover{
     cursor: pointer;
@@ -30,9 +30,11 @@
 }
 .rating{
     grid-row: 3/4;
+    margin:5px;
 }
 .price{
     grid-row: 4/5;
+    margin:5px;
 }
 .addToCart{
     grid-row: 5/6;
@@ -41,5 +43,13 @@
     color: white;
     border: none;
     border-radius: 7px;
+    width: fit-content;
+    padding: 0 4rem;
+
+    justify-self: center;
+}
+.addToCart:hover{
+    cursor: pointer;
+    background: rgb(83, 1, 1);
 }
 

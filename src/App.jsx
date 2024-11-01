@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { Link } from 'react-router-dom'
-import Product from './components/Product/Product';
-import useFetchProductRequest from './fetch/fetchProducts'
+import useFetchProductRequest from './Data/fetchProducts'
+import filterData from './Data/filterData'
 import ProductPage from './components/ProductPage'
+import CartCount from './components/CartCount';
 
-const App =  () => {
-  // 4 categories: 'products','electronics', "men's clothing", "women's clothing"
-          //products is an assortment for homepage.
-
+const App = () => {
   const [category, updateCategory] = useState('products')
   const [currentTitle, updateCurrentTitle] = useState("Today's Trends")
-  const { products, loading, error } = useFetchProductRequest(category);
+  
+  const { products, loading, error } = useFetchProductRequest()
+  const [productData, updateProductData] = useState(filterData(category, products))
 
-  // console.log(currentTitle)
+  const [cart, updateCart] = useState([])
+
+  useEffect(() =>{
+    updateProductData(filterData(category, products)) //renders after products returns defined
+  },[products])
   
   const handleClickCategory = (e) => {
     updateCategory(e.target.id)
@@ -21,27 +25,34 @@ const App =  () => {
       updateCurrentTitle("Today's Trends")
     }
     else{
-      console.log(e.target.textContent)
       updateCurrentTitle(e.target.textContent)
     }
+    updateProductData(filterData(e.target.id, products))
   }
-  const handleAddToCart = (e) =>{
-    console.log('added to cart')
+
+  const handleAddToCart = (item) =>{
+    updateCart([...cart, item])
+    console.log(cart)
   }
   return (
-    <div>
+    <>
       <div className="header">
           <h1 className='siteName' id='products' onClick={handleClickCategory}>Sure Shop</h1>
           <h2 className='electronics' id='electronics' onClick={handleClickCategory}>Electronics</h2>
           <h2 className='jewelry' id='jewelery' onClick={handleClickCategory}>Jewelry</h2>
           <h2 className='men' id="men's clothing" onClick={handleClickCategory}>Men's Clothing</h2>
           <h2 className='women' id="women's clothing" onClick={handleClickCategory}>Women's Clothing</h2>
-          <h2 className='cart' id='cart'>🛒</h2>
+          <div className='cartIconContainer'>
+            <h2 className='cart' id='cart'>🛒</h2>
+            <CartCount 
+              count = {cart.length}
+            />
+          </div>
       </div>
 
       <ProductPage
         title = {currentTitle} 
-        products = {products}
+        products = {productData}
         loading = {loading}
         error = {error}
         handleAddToCart={handleAddToCart}
@@ -49,7 +60,7 @@ const App =  () => {
       />
 
     
-    </div>
+    </>
   )
 }
 
