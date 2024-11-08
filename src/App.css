@@ -23,19 +23,33 @@ body{
 .header{
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   font-family: cursive;
   background-color: white;
 
   position: sticky;
   top:0;
+
+  padding: 1rem;
+}
+
+.siteName, .electronics, .jewelry, .men, .women{
+  text-decoration: none;
+  color: black;
+  
 }
 .siteName{
   font-family: cursive;
-
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.electronics, .jewelry, .men, .women{
+  font-size: 1.5rem;
 }
 .siteName:hover,.electronics:hover, .jewelry:hover, .men:hover, .women:hover{
   cursor: pointer;
-  color:  rgb(138, 90, 2)
+  color:  rgb(138, 90, 2);
+  text-decoration: underline;
 
 }
 .cartIconContainer{
@@ -44,7 +58,7 @@ body{
 }
 .cartIconContainer:hover{
   cursor: pointer;
-  color: rgba(138, 90, 2, 0.459)
+
 }
 .cart{
   grid-row: 1/2;
@@ -53,6 +67,10 @@ body{
   padding:0;
   margin-top: 0;
 }
+.cart:hover{
+  color:rgba(90, 59, 1, 0.575);
+}
+
 .cartCount{
   grid-row: 1/2;
   grid-column: 1/2;

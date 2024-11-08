@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Product from "./Product/Product"
 
-export default function ProductPage({title, products = [], category, loading, error, handleAddToCart}){
+export default function ProductsPage({title, products = [], category, loading, error, handleAddToCart}){
     
     return (
         <div className="productPage">
@@ -15,7 +15,7 @@ export default function ProductPage({title, products = [], category, loading, er
                         <Product
                             image={item.image}
                             title={item.title}
-                            rating={item.rating.rate}  // Access `rate` directly if rating is an object
+                            rating={item.rating}  // Access `rate` directly if rating is an object
                             price={item.price}
                             handleAddToCart={() => handleAddToCart(item)}  // Pass entire data segment when clicked
                             key={item.id}

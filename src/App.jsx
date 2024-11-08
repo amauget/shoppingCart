@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Link } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import useFetchProductRequest from './Data/fetchProducts'
 import filterData from './Data/filterData'
-import ProductPage from './components/ProductPage'
+import ProductsPage from './components/ProductsPage'
 import CartCount from './components/CartCount';
 import Cart from './components/Cart/Cart'
 
 const App = () => {
-  const [category, updateCategory] = useState('products')
+  const [category, updateCategory] = useState('products') //Defaults to display all category items in API
   const [currentTitle, updateCurrentTitle] = useState("Today's Trends")
   
   const { products, loading, error } = useFetchProductRequest()
   const [productData, updateProductData] = useState(filterData(category, products))
 
   const [cart, updateCart] = useState([])
+  console.log(cart)
+
   //cart component to be child of App, overlaying current product page in popup format
   useEffect(() =>{
     updateProductData(filterData(category, products)) //renders after products returns defined
@@ -33,17 +35,17 @@ const App = () => {
 
   const handleAddToCart = (item) =>{
     updateCart([...cart, item])
-    console.log(cart)
   }
 
   return (
     <>
       <div className="header">
-          <h1 className='siteName' id='products' onClick={handleClickCategory}>Sure Shop</h1>
-          <h2 className='electronics' id='electronics' onClick={handleClickCategory}>Electronics</h2>
-          <h2 className='jewelry' id='jewelery' onClick={handleClickCategory}>Jewelry</h2>
-          <h2 className='men' id="men's clothing" onClick={handleClickCategory}>Men's Clothing</h2>
-          <h2 className='women' id="women's clothing" onClick={handleClickCategory}>Women's Clothing</h2>
+          <Link className='siteName' id='products' onClick={handleClickCategory} to='/'>Sure Shop</Link>
+          <Link className='electronics' id='electronics' onClick={handleClickCategory} to='/'>Electronics</Link>
+          <Link className='jewelry' id='jewelery' onClick={handleClickCategory} to='/'>Jewelry</Link>
+          <Link className='men' id="men's clothing" onClick={handleClickCategory}to='/'>Men's Clothing</Link>
+          <Link className='women' id="women's clothing" onClick={handleClickCategory} to='/'>Women's Clothing</Link>
+          
           <div className='cartIconContainer'>
           <Link className='cart' id='cart' to='/Cart'>🛒</Link>
             <CartCount 
@@ -51,20 +53,36 @@ const App = () => {
             />
           </div>
       </div>
-    {/* implement routing here to partition cart and products. Research means of passing states  */}
-      <ProductPage
-        title = {currentTitle} 
-        products = {productData}
-        loading = {loading}
-        error = {error}
-        handleAddToCart={handleAddToCart}
 
-      />
-      {/* <Cart  
-        title = 'Your Shopping Cart'
-        data = {cart}
-      /> */}
+    <Routes>
+      <Route
+        path = '/' //called a wildcard. Prevents de-coupling of parent when using nested paths
+        element = {
+          <ProductsPage
+            title = {currentTitle}
+            products = {productData}
+            loading = {loading}
+            error = {error}
+            handleAddToCart={handleAddToCart}
+          ></ProductsPage>
+        }
+      >
+      </Route>
 
+      <Route
+        path='/Cart'
+        element = {
+          <Cart 
+            //Insert Props here
+            data = {cart}
+            updateCart = {updateCart} //Update Cart state for removed items
+
+          >
+          </Cart>
+        }
+      >  
+      </Route>
+    </Routes>
     
     </>
   )

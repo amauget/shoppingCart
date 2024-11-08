@@ -1,16 +1,18 @@
 import App from "./App";
-import ProductPage from "./components/ProductPage";
-import Cart from "./components/Cart/Cart";
-// import ErrorPage from "./assets/ErrorPage";
+import ProductsPage from "./components/ProductsPage";
+import Cart from "./components/Cart/Cart.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
+//Add error handling
+
 const routes =[
         {
             path: "/",
             element: <App />, //Viewing List of products
             children: [
-                {path: '/components/Cart/Cart.jsx', element: <Cart />},
-                {path: '/components/ProductPage.jsx', element: <ProductPage />}
-            ]
-            // errorElement: <ErrorPage />
+                {path: '/Cart', element: <Cart />},
+                {path: '/ProductsPage', element: <ProductsPage />}
+            ],
+            errorElement: <ErrorPage />
         },
     ]
 
