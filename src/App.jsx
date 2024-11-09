@@ -15,7 +15,7 @@ const App = () => {
   const [productData, updateProductData] = useState(filterData(category, products))
 
   const [cart, updateCart] = useState([])
-  console.log(cart)
+
 
   //cart component to be child of App, overlaying current product page in popup format
   useEffect(() =>{
@@ -74,7 +74,7 @@ const App = () => {
         element = {
           <Cart 
             //Insert Props here
-            data = {cart}
+            cart = {cart}
             updateCart = {updateCart} //Update Cart state for removed items
 
           >
