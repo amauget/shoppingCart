@@ -40,7 +40,7 @@ const App = () => {
   return (
     <>
       <div className="header">
-          <Link className='siteName' id='products' onClick={handleClickCategory} to='/'>Sure Shop</Link>
+          <Link className='siteName' to='/'><img className='siteLogo' src="./public/logo.png" alt="Sure Shop" id='products' onClick={handleClickCategory}></img> </Link>
           <Link className='electronics' id='electronics' onClick={handleClickCategory} to='/'>Electronics</Link>
           <Link className='jewelry' id='jewelery' onClick={handleClickCategory} to='/'>Jewelry</Link>
           <Link className='men' id="men's clothing" onClick={handleClickCategory}to='/'>Men's Clothing</Link>
@@ -52,8 +52,9 @@ const App = () => {
               count = {cart.length}
             />
           </div>
+          
       </div>
-
+     
     <Routes>
       <Route
         path = '/' //called a wildcard. Prevents de-coupling of parent when using nested paths

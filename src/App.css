@@ -31,6 +31,8 @@ body{
   top:0;
 
   padding: 1rem;
+  min-width: 90vw;
+
 }
 
 .siteName, .electronics, .jewelry, .men, .women{
@@ -38,13 +40,16 @@ body{
   color: black;
   
 }
-.siteName{
-  font-family: cursive;
-  font-size: 2.5rem;
-  font-weight: bold;
+.siteLogo{
+  width: 15vw;
+  padding: 0;
+  margin: 0;
+  border-radius: 50px;
+  margin-left: -100px;
 }
 .electronics, .jewelry, .men, .women{
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 550;
 }
 .siteName:hover,.electronics:hover, .jewelry:hover, .men:hover, .women:hover{
   cursor: pointer;

@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
+import OrderSummary from "./OrderSummary";
+import './Cart.css'
+
 export default function Cart({ cart, updateCart }){
     const removeFromCart = (removed) => {
         const newCart = cart.filter(item => item.title !== removed.title)
@@ -26,6 +29,9 @@ export default function Cart({ cart, updateCart }){
             : <h3>No Items in Cart</h3>
             }
             </div>
+            <OrderSummary
+                cart = {cart}
+            ></OrderSummary>
 
 
 
