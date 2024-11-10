@@ -4,6 +4,7 @@ import mockJSON from "./mockJSON";
 
 const mockData = mockJSON()
 
+//Add a test for item.title filtering
 
 it('correctly filters the data structure array based on category', ()=> {
     const electronics = filterData('electronics', mockData).length

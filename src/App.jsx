@@ -3,9 +3,11 @@ import './App.css'
 import { Link, Route, Routes } from 'react-router-dom'
 import useFetchProductRequest from './Data/fetchProducts'
 import filterData from './Data/filterData'
+
 import ProductsPage from './components/ProductsPage'
 import CartCount from './components/CartCount';
 import Cart from './components/Cart/Cart'
+import ProductInfoPage from './components/ProductInfoPage'
 
 const App = () => {
   const [category, updateCategory] = useState('products') //Defaults to display all category items in API
@@ -16,6 +18,9 @@ const App = () => {
 
   const [cart, updateCart] = useState([])
 
+  const [viewItem, updateViewItem] = useState({})
+
+  // ADD LOGIC FOR COUNTING ADDED OBJECT INSTEAD OF DUPLICATING IN CART
 
   //cart component to be child of App, overlaying current product page in popup format
   useEffect(() =>{
@@ -37,10 +42,14 @@ const App = () => {
     updateCart([...cart, item])
   }
 
+  const handleViewItem = (item) => {
+    updateViewItem(item)
+  }
+
   return (
     <>
       <div className="header">
-          <Link className='siteName' to='/'><img className='siteLogo' src="./public/logo.png" alt="Sure Shop" id='products' onClick={handleClickCategory}></img> </Link>
+          <Link className='siteName' to='/'><img className='siteLogo' src="/logo.png" alt="Sure Shop" id='products' onClick={handleClickCategory}></img> </Link>
           <Link className='electronics' id='electronics' onClick={handleClickCategory} to='/'>Electronics</Link>
           <Link className='jewelry' id='jewelery' onClick={handleClickCategory} to='/'>Jewelry</Link>
           <Link className='men' id="men's clothing" onClick={handleClickCategory}to='/'>Men's Clothing</Link>
@@ -65,6 +74,7 @@ const App = () => {
             loading = {loading}
             error = {error}
             handleAddToCart={handleAddToCart}
+            handleViewItem ={handleViewItem}
           ></ProductsPage>
         }
       >
@@ -82,6 +92,18 @@ const App = () => {
           </Cart>
         }
       >  
+      </Route>
+
+      <Route
+      path='/ProductInfoPage'
+      element = { 
+        <ProductInfoPage 
+          item = {viewItem}
+          products = {products}
+        />
+       
+      }
+      >
       </Route>
     </Routes>
     

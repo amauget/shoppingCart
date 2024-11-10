@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Product from "./Product/Product"
 
-export default function ProductsPage({title, products = [], category, loading, error, handleAddToCart}){
+export default function ProductsPage({title, products = [], category, loading, error, handleAddToCart, handleViewItem}){
     
     return (
         <div className="productPage">
@@ -18,6 +18,7 @@ export default function ProductsPage({title, products = [], category, loading, e
                             rating={item.rating}  // Access `rate` directly if rating is an object
                             price={item.price}
                             handleAddToCart={() => handleAddToCart(item)}  // Pass entire data segment when clicked
+                            handleViewItem={() => handleViewItem(item)} //Updates single item page with selected data
                             key={item.id}
                         />
                 ))
