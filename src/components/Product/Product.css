@@ -20,6 +20,9 @@
     
     border-radius: 15px;
 }
+.productImg:hover{
+    cursor: pointer;
+}
 .title{
     grid-row: 2/3;
     font-size: 1.5rem;

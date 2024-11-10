@@ -12,8 +12,8 @@ export default function Cart({ cart, updateCart }){
         //implement a UI "Continue Shopping" button
 
         <div className="cartPageContainer">
-            <h1 className="cartTitle">Your Shopping Cart:</h1>
             <div className="cartProducts">
+                <h1 className="cartTitle">Your Shopping Cart</h1>
                 { cart.length > 0 ?
                 cart.map((item) => (
                     <CartItem
@@ -26,8 +26,8 @@ export default function Cart({ cart, updateCart }){
                    ></CartItem>
                     
                 ))
-            : <h3>No Items in Cart</h3>
-            }
+                : <h3>No Items</h3>
+                }
             </div>
             <OrderSummary
                 cart = {cart}
