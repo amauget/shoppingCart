@@ -107,3 +107,26 @@
 .summaryTitle{
     font-size: 2rem;
 }
+
+/* MOBILE STYLE */
+
+@media(max-width: 768px){
+    .cartPageContainer{
+        grid-template-columns: auto;
+    }
+    .cartProducts{
+        grid-row: 1/2;
+        grid-column: 1/2;
+    }
+   
+    .orderSummary{
+        grid-row: 2/3;
+        grid-column: 1/2;
+    }
+    
+    .cartTitle, .summaryTitle{
+        font-size: 1.5rem;
+        width: 60vw;
+    }
+    
+}
