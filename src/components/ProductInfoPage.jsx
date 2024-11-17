@@ -1,14 +1,16 @@
 import './Product/productInfo.css'
-
+import { useEffect, useState } from 'react'
 import filterData from '../Data/filterData'
 import Product from './Product/Product'
 
-export default function ProductInfoPage({ item, products }){
+export default function ProductInfoPage({ item, products, handleAddToCart, handleViewItem }){
     const related = filterData(item.category, products, item.title).splice(0,4)
-    //add in error handling
+    //add in error handling Navigate back to home and alert that item wasn't found?
     return(
         <div className="productInfoPage">
-            <img className='infoImg' src={item.image} alt="" />
+            <div className='imgContainer'>
+                <img className='infoImg' src={item.image} alt="" />
+            </div>
 
             <div className="textContainer">
                 <h1 className="infoTitle">{item.title}</h1>
@@ -17,12 +19,12 @@ export default function ProductInfoPage({ item, products }){
                     <h3 className='infoRating'>{item.rating.rate}/5 ({item.rating.count} Reviews)</h3>
                 </div>
                 <p className='description'>{item.description}</p>
-                <button className='addToCart' id='infoBtn'>Add to Cart</button>
+                <button className='addToCart' id='infoBtn' onClick={() => handleAddToCart(item)}>Add to Cart</button>
             </div>
 
             <div className="relatedItems">
                 <h2 className='relatedTitle'>Items You May Like</h2>
-                <div className="tempContainer">
+                <div className="itemsContainer">
                     {related.map(product =>(
                         <Product
                         image={product.image}

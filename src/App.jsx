@@ -87,7 +87,7 @@ const App = () => {
             //Insert Props here
             cart = {cart}
             updateCart = {updateCart} //Update Cart state for removed items
-
+            handleViewItem={handleViewItem}
           >
           </Cart>
         }
@@ -100,6 +100,8 @@ const App = () => {
         <ProductInfoPage 
           item = {viewItem}
           products = {products}
+          handleAddToCart = {handleAddToCart}
+          handleViewItem = {handleViewItem}
         />
        
       }

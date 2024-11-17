@@ -3,7 +3,7 @@ import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
 import './Cart.css'
 
-export default function Cart({ cart, updateCart }){
+export default function Cart({ cart, updateCart, handleViewItem }){
     const removeFromCart = (removed) => {
         const newCart = cart.filter(item => item.title !== removed.title)
         updateCart([...newCart])
@@ -23,6 +23,7 @@ export default function Cart({ cart, updateCart }){
                         price={item.price}
                         key={item.id}
                         removeFromCart={() => removeFromCart(item)} 
+                        handleViewItem = {() => handleViewItem(item)}
                    ></CartItem>
                     
                 ))
