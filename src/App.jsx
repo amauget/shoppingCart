@@ -19,7 +19,7 @@ const App = () => {
   const [cart, updateCart] = useState([])
 
   const [viewItem, updateViewItem] = useState({})
-
+  console.log(products)
   // ADD LOGIC FOR COUNTING ADDED OBJECT INSTEAD OF DUPLICATING IN CART
 
   //cart component to be child of App, overlaying current product page in popup format
