@@ -8,7 +8,7 @@ export default function OrderSummary({ cart }){
             Order Total:
     */
     let subtotal = 0
-    cart.forEach(item => subtotal += item.price)
+    cart.forEach(item => subtotal += (item.price * item.selected))
 
     const tax = parseFloat((subtotal * .08).toFixed(2)) 
 

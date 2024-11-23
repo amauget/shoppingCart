@@ -8,6 +8,7 @@ export default function Cart({ cart, updateCart, handleViewItem }){
         const newCart = cart.filter(item => item.title !== removed.title)
         updateCart([...newCart])
     }
+    
     return(
         //implement a UI "Continue Shopping" button
 
@@ -24,6 +25,7 @@ export default function Cart({ cart, updateCart, handleViewItem }){
                         key={item.id}
                         removeFromCart={() => removeFromCart(item)} 
                         handleViewItem = {() => handleViewItem(item)}
+                        quantity = {item.selected}
                    ></CartItem>
                     
                 ))

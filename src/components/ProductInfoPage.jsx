@@ -2,10 +2,21 @@ import './Product/productInfo.css'
 import { useEffect, useState } from 'react'
 import filterData from '../Data/filterData'
 import Product from './Product/Product'
+import Quantity from './Quantity'
 
 export default function ProductInfoPage({ item, products, handleAddToCart, handleViewItem }){
     const related = filterData(item.category, products, item.title).splice(0,4)
-    //add in error handling Navigate back to home and alert that item wasn't found?
+    //OCASSIONAL BUG FOUND. WHEN SELECTING ITEM TO VIEW, SOMETIMES IT LOADS THE PREVIOUSLY VIEWED ITEM INSTEAD OF CURRENT.
+    const [quantity, updateQuantity] = useState(1)
+
+    const handleQuantity = (value) => {
+        updateQuantity(value)
+    } 
+
+    useEffect(() => {
+        updateQuantity(1)
+    },[item.title])
+
     return(
         <div className="productInfoPage">
             <div className='imgContainer'>
@@ -19,7 +30,14 @@ export default function ProductInfoPage({ item, products, handleAddToCart, handl
                     <h3 className='infoRating'>{item.rating.rate}/5 ({item.rating.count} Reviews)</h3>
                 </div>
                 <p className='description'>{item.description}</p>
-                <button className='addToCart' id='infoBtn' onClick={() => handleAddToCart(item)}>Add to Cart</button>
+                <label htmlFor="quantity">Quantity:</label>
+                {/* Create select function to update displayed value to equal quantity */}
+                
+                <Quantity
+                    quantity={quantity}
+                    handleQuantity={handleQuantity}
+                />
+                <button className='addToCart' id='infoBtn' onClick={() => handleAddToCart(item, quantity)}>Add to Cart</button>
             </div>
 
             <div className="relatedItems">
@@ -29,7 +47,8 @@ export default function ProductInfoPage({ item, products, handleAddToCart, handl
                         <Product
                         image={product.image}
                         title={product.title}
-                        rating={product.rating}  // Access `rate` directly if rating is an object
+                        rate={product.rating.rate}
+                        count = {product.rating.count}
                         price={product.price}
                         handleAddToCart={() => handleAddToCart(product)}  // Pass entire data segment when clicked
                         handleViewItem={() => handleViewItem(product)} //Updates single item page with selected data

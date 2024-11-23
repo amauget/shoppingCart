@@ -1,25 +1,7 @@
-VITE
-    npm create vite@latest . --template react  
-    npm install
+This mock Ecommerce site covers basic routing principles and vitest fundamentals. 
 
-    npm install --save prop-types
+Many detailed conditions have purposefully been left out, such as apparel size, quantity of items, and so forth, as they're time consuming, and don't contribute to the learning experience intended for this project.
 
-VITEST
-    npm install -D vitest
-    npm install -D @testing-library/react
+This is a project to learn concepts. Not a portfolio item.
 
-
-
-.gitignore
-
-#Reference file directory (Quality control staples) 
-    src/ref
-
-
-ROUTER
-    npm install react-router-dom
-
-
-TAILWIND (optional files elsewhere but installs made) - src: https://tailwindcss.com/docs/installation
-    npm install -D tailwindcss
-    npx tailwindcss init
+All product data is sourced from "https://fakestoreapi.com/".

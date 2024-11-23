@@ -17,6 +17,7 @@ const useFetchProductRequest = () => {
                 }
     
                 let postProducts = await response.json()
+
                 updateProducts(postProducts)
                 setError(null)
                 
@@ -30,6 +31,7 @@ const useFetchProductRequest = () => {
         FetchProductData()
     }, [])
 
+    products.forEach(item => item.selected = 1) //Adds selected data key to allow quantity render/add to cart logic.
 
     return { products, loading, error }
 }

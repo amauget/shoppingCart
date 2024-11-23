@@ -8,6 +8,9 @@ import ProductsPage from './components/ProductsPage'
 import CartCount from './components/CartCount';
 import Cart from './components/Cart/Cart'
 import ProductInfoPage from './components/ProductInfoPage'
+import { type } from '@testing-library/user-event/dist/cjs/utility/type.js'
+
+/* TO DO: IMPLEMENT SELECT IN CART. FIX STATE HANDLING, STATE IS NOT PROPERLY UPDATING. */
 
 const App = () => {
   const [category, updateCategory] = useState('products') //Defaults to display all category items in API
@@ -17,9 +20,8 @@ const App = () => {
   const [productData, updateProductData] = useState(filterData(category, products))
 
   const [cart, updateCart] = useState([])
-
+  console.log(cart)
   const [viewItem, updateViewItem] = useState({})
-  console.log(products)
   // ADD LOGIC FOR COUNTING ADDED OBJECT INSTEAD OF DUPLICATING IN CART
 
   //cart component to be child of App, overlaying current product page in popup format
@@ -38,11 +40,29 @@ const App = () => {
     updateProductData(filterData(e.target.id, products))
   }
 
-  const handleAddToCart = (item) =>{
-    updateCart([...cart, item])
+  const handleAddToCart = (item, quantity = 1) =>{
+    let newCart = cart
+    let inCart = false
+    //add quantity for items.
+    newCart.forEach((product) => {
+      if(item.title === product.title){
+        product.selected = quantity
+        inCart = true
+      }
+    })
+    if(inCart === false){
+      item.selected = quantity
+      newCart.push(item)
+    }
+    console.log(quantity)
+    console.log(newCart)
+    
+    updateCart([...newCart])
+  
   }
 
   const handleViewItem = (item) => {
+    console.log(item)
     updateViewItem(item)
   }
 
