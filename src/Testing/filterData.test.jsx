@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import filterData from "./filterData";
-import mockJSON from "./mockJSON";
+import filterData from '../Data/filterData'
+import mockJSON from '../Data/mockJSON'
 
 const mockData = mockJSON()
 

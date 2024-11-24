@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+import './Style/App.css'
 import { Link, Route, Routes } from 'react-router-dom'
 import useFetchProductRequest from './Data/fetchProducts'
 import filterData from './Data/filterData'
 
 import ProductsPage from './components/ProductsPage'
-import CartCount from './components/CartCount';
+import CartCount from './components/Cart/CartCount'
 import Cart from './components/Cart/Cart'
 import ProductInfoPage from './components/ProductInfoPage'
 import { type } from '@testing-library/user-event/dist/cjs/utility/type.js'
@@ -20,9 +20,8 @@ const App = () => {
   const [productData, updateProductData] = useState(filterData(category, products))
 
   const [cart, updateCart] = useState([])
-  console.log(cart)
+
   const [viewItem, updateViewItem] = useState({})
-  // ADD LOGIC FOR COUNTING ADDED OBJECT INSTEAD OF DUPLICATING IN CART
 
   //cart component to be child of App, overlaying current product page in popup format
   useEffect(() =>{
@@ -41,28 +40,22 @@ const App = () => {
   }
 
   const handleAddToCart = (item, quantity = 1) =>{
-    let newCart = cart
     let inCart = false
-    //add quantity for items.
-    newCart.forEach((product) => {
-      if(item.title === product.title){
-        product.selected = quantity
+
+    let newCart = cart.map((product) => { //Create mutable copy of cart
+      if(item.id === product.id){
         inCart = true
+        return {...product, selected: quantity}
       }
+      return product
     })
-    if(inCart === false){
-      item.selected = quantity
-      newCart.push(item)
+    if(!inCart){
+      newCart = [...newCart, {...item, selected: quantity}] 
     }
-    console.log(quantity)
-    console.log(newCart)
-    
-    updateCart([...newCart])
-  
+    updateCart(newCart)
   }
 
   const handleViewItem = (item) => {
-    console.log(item)
     updateViewItem(item)
   }
 
@@ -108,6 +101,7 @@ const App = () => {
             cart = {cart}
             updateCart = {updateCart} //Update Cart state for removed items
             handleViewItem={handleViewItem}
+            handleAddToCart={handleAddToCart}
           >
           </Cart>
         }

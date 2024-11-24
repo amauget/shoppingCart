@@ -6,7 +6,7 @@ import Quantity from './Quantity'
 
 export default function ProductInfoPage({ item, products, handleAddToCart, handleViewItem }){
     const related = filterData(item.category, products, item.title).splice(0,4)
-    //OCASSIONAL BUG FOUND. WHEN SELECTING ITEM TO VIEW, SOMETIMES IT LOADS THE PREVIOUSLY VIEWED ITEM INSTEAD OF CURRENT.
+
     const [quantity, updateQuantity] = useState(1)
 
     const handleQuantity = (value) => {

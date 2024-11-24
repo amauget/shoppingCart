@@ -6,7 +6,7 @@ import ProductInfoPage from "./components/ProductInfoPage.jsx";
 
 const routes =[
         {
-            path: "/",
+            path: "",
             element: <App />, //Viewing List of products
             children: [
                 {path: '/Cart', element: <Cart />},
