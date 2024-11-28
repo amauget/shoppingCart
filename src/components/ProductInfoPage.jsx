@@ -1,11 +1,13 @@
-import './Product/productInfo.css'
+import '../Style/productInfo.css'
 import { useEffect, useState } from 'react'
 import filterData from '../Data/filterData'
 import Product from './Product/Product'
 import Quantity from './Quantity'
 
 export default function ProductInfoPage({ item, products, handleAddToCart, handleViewItem }){
+    //limits related to 4 items max for presentability
     const related = filterData(item.category, products, item.title).splice(0,4)
+    
     const [quantity, updateQuantity] = useState(1)
 
     const handleQuantity = (value) => {
@@ -29,12 +31,14 @@ export default function ProductInfoPage({ item, products, handleAddToCart, handl
                     <h3 className='infoRating'>{item.rating.rate}/5 ({item.rating.count} Reviews)</h3>
                 </div>
                 <p className='description'>{item.description}</p>
-                <label htmlFor="quantity">Quantity:</label>
+                <div className="quantityContainer">
+                    <label className='quantityLabel' htmlFor="quantity">Quantity:</label>
+                    <Quantity
+                        quantity={quantity}
+                        handleQuantity={handleQuantity}
+                    />
+                </div>
                 
-                <Quantity
-                    quantity={quantity}
-                    handleQuantity={handleQuantity}
-                />
                 <button className='addToCart' id='infoBtn' onClick={() => handleAddToCart(item, quantity)}>Add to Cart</button>
             </div>
 

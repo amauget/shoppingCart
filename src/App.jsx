@@ -19,15 +19,15 @@ const App = () => {
   const [cart, updateCart] = useState([])
   const [viewItem, updateViewItem] = useState({})
 
-  //cart component to be child of App, overlaying current product page in popup format
-  useEffect(() =>{
-    updateAllProducts(products) //creates default products state after api fetch
-    updateProductData(filterData(category, products)) //initial render.. all other updates use "allProducts"
+
+  useEffect(() =>{ //Updates intial data states after API fetch is complete
+    updateAllProducts(products) 
+    updateProductData(filterData(category, products)) 
   },[products])
   
-  const handleClickCategory = (e) => {
+  const handleClickCategory = (e) => { 
     updateCategory(e.target.id)
-    if(e.target.id === 'products'){
+    if(e.target.id === 'products'){ //All categories (Sure Shop Icon -> click)
       updateCurrentTitle("Today's Trends")
     }
     else{
@@ -36,7 +36,7 @@ const App = () => {
     updateProductData(filterData(e.target.id, allProducts))
   }
 
-  const handleAddToCart = (item, quantity = 1) =>{
+  const handleAddToCart = (item, quantity = 1) =>{ //updates cart state everywhere except for the cart page itself.
     let inCart = false
 
     let newCart = cart.map((product) => {
@@ -52,7 +52,8 @@ const App = () => {
     updateCart(newCart)
   }
 
-  const handleViewItem = (item) => {
+  const handleViewItem = (item) => { 
+    //called when an item image or title is clicked. Updates the view item state before routing to "productInfoPage"
     updateViewItem(item)
   }
 
@@ -76,7 +77,7 @@ const App = () => {
      
     <Routes>
       <Route
-        path = '/' //called a wildcard. Prevents de-coupling of parent when using nested paths
+        path = '/'
         element = {
           <ProductsPage
             title = {currentTitle}
@@ -94,11 +95,9 @@ const App = () => {
         path='/Cart'
         element = {
           <Cart 
-            //Insert Props here
             cart = {cart}
-            updateCart = {updateCart} //Update Cart state for removed items
+            updateCart = {updateCart} //Update Cart state for removed items and altered quantities
             handleViewItem={handleViewItem}
-            handleAddToCart={handleAddToCart}
           >
           </Cart>
         }
@@ -114,7 +113,6 @@ const App = () => {
           handleAddToCart = {handleAddToCart}
           handleViewItem = {handleViewItem}
         />
-       
       }
       >
       </Route>

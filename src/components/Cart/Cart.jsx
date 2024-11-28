@@ -1,8 +1,8 @@
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
-import './Cart.css'
+import '../../Style/Cart.css'
 
-export default function Cart({ cart, updateCart, handleViewItem, handleAddToCart }){
+export default function Cart({ cart, updateCart, handleViewItem }){
     const removeFromCart = (removed) => {
         const newCart = cart.filter(item => item.title !== removed.title)
         updateCart([...newCart])
@@ -12,12 +12,8 @@ export default function Cart({ cart, updateCart, handleViewItem, handleAddToCart
         const newCart = cart.filter(item => item.selected = value )
         updateCart([...newCart])
     }
-
-    //Update "selected" data in products and remove quantity from cart.
-    /* perhaps, remove list items from cart altogether. Use inCart bool to render cart from OG data. */
-    
+   
     return(
-        //implement a UI "Continue Shopping" button
         <div className="cartPageContainer">
             <div className="cartProducts">
                 <h1 className="cartTitle">Your Shopping Cart</h1>

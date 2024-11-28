@@ -3,9 +3,8 @@ import CartQuantity from "../CartQuantity"
 export default function CartItem({ item, changeCartQuantity, removeFromCart, handleViewItem }){
     return(
         <div className="cartItem">
-            <h3 className='cartName'>{item.title}</h3>
+            <Link to='/ProductInfoPage' className={'cartName'} onClick={handleViewItem}>{item.title}</Link> 
             <Link to='/ProductInfoPage'><img className="cartImg" src={item.image} onClick={handleViewItem} /></Link>
-            {/* <h3 className="cartRating">{rating.rate} Stars ({rating.count} Reviews)</h3> */}
             <h3 className="cartPrice">${item.price * item.selected}</h3>
             <CartQuantity
                     item = { item }
@@ -17,4 +16,3 @@ export default function CartItem({ item, changeCartQuantity, removeFromCart, han
     )
 
 }
-// <Link to='/ProductInfoPage'><img className="productImg" src={image} onClick={handleViewItem} /></Link>

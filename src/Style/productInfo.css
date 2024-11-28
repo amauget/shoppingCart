@@ -1,3 +1,6 @@
+.header{
+    /* width: 90vw; */
+}
 .productInfoPage{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -41,10 +44,33 @@
     .description{
         grid-row: 3/4;
         grid-column: 1/3;
-        font-size: 1.3rem;   
+        font-size: 1.3rem;
+        width: 30vw;
+        justify-self: center;   
     }
-    #infoBtn{ /* add to cart button for info page */
+
+    .quantityContainer{
         grid-row: 4/5;
+        grid-column: 1/3;
+        display:flex;
+        justify-content: center;
+        gap: 5vw;
+        font-size: 1.3rem;
+        font-weight: bold;
+        align-items: center;
+
+    }
+        #quantity{
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 5vw;
+            text-align: center;
+
+            border:1.5px black solid;
+
+        }
+    #infoBtn{ /* add to cart button for info page */
+        grid-row: 5/6;
         grid-column: 1/3;
         justify-self: center;
         align-self: end;

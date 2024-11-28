@@ -15,7 +15,8 @@ export default function ProductsPage({title, products = [], category, loading, e
                         <Product
                             image={item.image}
                             title={item.title}
-                            rating={item.rating}  // Access `rate` directly if rating is an object
+                            rate={item.rating.rate}  // Access `rate` directly if rating is an object
+                            count = {item.rating.count}
                             price={item.price}
                             handleAddToCart={() => handleAddToCart(item)}  // Pass entire data segment when clicked
                             handleViewItem={() => handleViewItem(item)} //Updates single item page with selected data
