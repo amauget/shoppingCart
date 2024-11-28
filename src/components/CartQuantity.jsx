@@ -1,4 +1,4 @@
-export default function CartQuantity({ item, quantity = 1, handleAddToCart }){
+export default function CartQuantity({ item, quantity = 1, changeCartQuantity }){
     const values = [1,2,3,4,5]
 
     return (
@@ -6,7 +6,7 @@ export default function CartQuantity({ item, quantity = 1, handleAddToCart }){
             name="quantity" 
             id="quantity" 
             value={quantity} 
-            onChange={(e) => handleAddToCart(item, Number(e.target.value))}
+            onChange={(e) => changeCartQuantity(Number(e.target.value))}
         >
             {values.map(value => (
                 <option key={value} value={value}>

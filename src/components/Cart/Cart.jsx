@@ -26,7 +26,7 @@ export default function Cart({ cart, updateCart, handleViewItem, handleAddToCart
                     <CartItem
                         item={item}
                         removeFromCart={() => removeFromCart(item)} 
-                        handleAddToCart = {handleAddToCart}
+                        changeCartQuantity = {changeCartQuantity}
                         handleViewItem={() => handleViewItem(item)} //Updates single item page with selected data
                         key={item.id}
                    ></CartItem>
