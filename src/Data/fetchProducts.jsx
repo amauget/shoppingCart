@@ -31,7 +31,8 @@ const useFetchProductRequest = () => {
         FetchProductData()
     }, [])
 
-    products.forEach(item => item.selected = 1) //Adds selected data key to allow quantity render/add to cart logic.
+    products.map((item) =>  item.selected = 1 ) // allows products to be quantifiable
+    
 
     return { products, loading, error }
 }

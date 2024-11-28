@@ -1,5 +1,5 @@
-import { vi, describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { vi, describe, it } from "vitest";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom"; // Import MemoryRouter for testing
 import Product from "../components/Product/Product";
 

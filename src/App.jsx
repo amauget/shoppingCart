@@ -8,24 +8,21 @@ import ProductsPage from './components/ProductsPage'
 import CartCount from './components/Cart/CartCount'
 import Cart from './components/Cart/Cart'
 import ProductInfoPage from './components/ProductInfoPage'
-import { type } from '@testing-library/user-event/dist/cjs/utility/type.js'
-
-/* TO DO: IMPLEMENT SELECT IN CART. FIX STATE HANDLING, STATE IS NOT PROPERLY UPDATING. */
 
 const App = () => {
   const [category, updateCategory] = useState('products') //Defaults to display all category items in API
   const [currentTitle, updateCurrentTitle] = useState("Today's Trends")
   
   const { products, loading, error } = useFetchProductRequest()
+  const [allProducts, updateAllProducts] = useState(products)
   const [productData, updateProductData] = useState(filterData(category, products))
-
   const [cart, updateCart] = useState([])
-
   const [viewItem, updateViewItem] = useState({})
 
   //cart component to be child of App, overlaying current product page in popup format
   useEffect(() =>{
-    updateProductData(filterData(category, products)) //renders after products returns defined
+    updateAllProducts(products) //creates default products state after api fetch
+    updateProductData(filterData(category, products)) //initial render.. all other updates use "allProducts"
   },[products])
   
   const handleClickCategory = (e) => {
@@ -36,16 +33,16 @@ const App = () => {
     else{
       updateCurrentTitle(e.target.textContent)
     }
-    updateProductData(filterData(e.target.id, products))
+    updateProductData(filterData(e.target.id, allProducts))
   }
 
   const handleAddToCart = (item, quantity = 1) =>{
     let inCart = false
 
-    let newCart = cart.map((product) => { //Create mutable copy of cart
+    let newCart = cart.map((product) => {
       if(item.id === product.id){
         inCart = true
-        return {...product, selected: quantity}
+        product.selected += quantity
       }
       return product
     })
@@ -71,7 +68,7 @@ const App = () => {
           <div className='cartIconContainer'>
           <Link className='cart' id='cart' to='/Cart'>🛒</Link>
             <CartCount 
-              count = {cart.length}
+              cart = {cart}
             />
           </div>
           

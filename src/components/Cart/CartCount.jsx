@@ -1,6 +1,9 @@
-export default function CartCount({count}){
-    let output = count
-    if(count === 0){
+export default function CartCount({ cart }){
+    let output = 0
+    cart.forEach(item =>{
+        output += item.selected
+    })
+    if(output === 0){
         output = ''
     }
     return(   

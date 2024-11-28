@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { it, expect } from "vitest";
 import filterData from '../Data/filterData'
 import mockJSON from '../Data/mockJSON'
 
