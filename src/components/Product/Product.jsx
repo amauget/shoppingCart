@@ -1,4 +1,4 @@
-import './Product.css'
+import '../../Style/Product.css'
 import { Link } from 'react-router-dom'
 
 export default function Product({ image, title, rate, count, price, handleAddToCart, handleViewItem }){

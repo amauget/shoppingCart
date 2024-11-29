@@ -25,7 +25,7 @@
     grid-template-columns: 12vw 18vw repeat(3, auto);
     align-items: center;
     justify-content: center;
-    gap:2rem;
+    gap:1rem;
     margin-bottom: 2rem;
     
 }
