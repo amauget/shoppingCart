@@ -9,6 +9,7 @@ import CartCount from './components/Cart/CartCount'
 import Cart from './components/Cart/Cart'
 import ProductInfoPage from './components/ProductInfoPage'
 
+
 const App = () => {
   const [category, updateCategory] = useState('products') //Defaults to display all category items in API
   const [currentTitle, updateCurrentTitle] = useState("Today's Trends")
@@ -24,6 +25,13 @@ const App = () => {
     updateAllProducts(products) 
     updateProductData(filterData(category, products)) 
   },[products])
+
+  useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Adds smooth scrolling animation
+    });
+},[category, viewItem])
   
   const handleClickCategory = (e) => { 
     updateCategory(e.target.id)

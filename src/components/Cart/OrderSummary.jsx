@@ -28,8 +28,6 @@ export default function OrderSummary({ cart }){
             <h2 className="orderTotalTitle">Order Total:</h2>
             <h2 className="orderTotal">${orderTotal}</h2>
         </div>
-        
-    
     </div>
    )
 }

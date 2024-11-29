@@ -26,7 +26,6 @@ export default function Cart({ cart, updateCart, handleViewItem }){
                         handleViewItem={() => handleViewItem(item)} //Updates single item page with selected data
                         key={item.id}
                    ></CartItem>
-                    
                 ))
                 : <h3>No Items</h3>
                 }
@@ -34,9 +33,6 @@ export default function Cart({ cart, updateCart, handleViewItem }){
             <OrderSummary
                 cart = {cart}
             ></OrderSummary>
-
-
-
         </div>
     )
 }

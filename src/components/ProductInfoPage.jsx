@@ -1,5 +1,5 @@
 import '../Style/productInfo.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import filterData from '../Data/filterData'
 import Product from './Product/Product'
 import Quantity from './Quantity'
@@ -9,14 +9,16 @@ export default function ProductInfoPage({ item, products, handleAddToCart, handl
     const related = filterData(item.category, products, item.title).splice(0,4)
     
     const [quantity, updateQuantity] = useState(1)
+    const [current, updateCurrent] = useState(0)
+
+    if(item.id !== current){
+        updateCurrent(item.id) //Detects when a new item is selected to reset quantity to 1
+        updateQuantity(1)
+    }
 
     const handleQuantity = (value) => {
         updateQuantity(value)
     } 
-
-    useEffect(() => {
-        updateQuantity(1) //resets quantity upon item navigation
-    },[item.title])
 
     return(
         <div className="productInfoPage">
@@ -26,11 +28,14 @@ export default function ProductInfoPage({ item, products, handleAddToCart, handl
 
             <div className="textContainer">
                 <h1 className="infoTitle">{item.title}</h1>
+                
                 <div className='priceRatingContainer'>
                     <h3 className="infoPrice">${item.price}</h3>
                     <h3 className='infoRating'>{item.rating.rate}/5 ({item.rating.count} Reviews)</h3>
                 </div>
+
                 <p className='description'>{item.description}</p>
+                
                 <div className="quantityContainer">
                     <label className='quantityLabel' htmlFor="quantity">Quantity:</label>
                     <Quantity
@@ -44,6 +49,7 @@ export default function ProductInfoPage({ item, products, handleAddToCart, handl
 
             <div className="relatedItems">
                 <h2 className='relatedTitle'>Items You May Like</h2>
+                
                 <div className="itemsContainer">
                     {related.map(product =>(
                         <Product
@@ -58,10 +64,7 @@ export default function ProductInfoPage({ item, products, handleAddToCart, handl
                     />
                     ))}
                 </div>
-                
             </div>
-           
         </div>
-
     )
 }
