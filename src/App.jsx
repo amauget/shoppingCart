@@ -17,8 +17,9 @@ const App = () => {
   const { products, loading, error } = useFetchProductRequest()
   const [allProducts, updateAllProducts] = useState(products)
   const [productData, updateProductData] = useState(filterData(category, products))
-  const [cart, updateCart] = useState([])
-  const [viewItem, updateViewItem] = useState({})
+
+  const [cart, updateCart] = useState([]) 
+  const [viewItem, updateViewItem] = useState({}) //Product info page State
 
 
   useEffect(() =>{ //Updates intial data states after API fetch is complete
@@ -113,19 +114,19 @@ const App = () => {
       </Route>
 
       <Route
-      path='/ProductInfoPage'
-      element = { 
-        <ProductInfoPage 
-          item = {viewItem}
-          products = {products}
-          handleAddToCart = {handleAddToCart}
-          handleViewItem = {handleViewItem}
-        />
-      }
+        path='/ProductInfoPage'
+        element = { 
+          <ProductInfoPage 
+            item = {viewItem}
+            products = {products}
+            handleAddToCart = {handleAddToCart}
+            handleViewItem = {handleViewItem}
+          />
+        }
       >
       </Route>
+
     </Routes>
-    
     </>
   )
 }
